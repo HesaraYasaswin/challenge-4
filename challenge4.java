@@ -88,12 +88,16 @@ class challenge4
 
 	public static void main(String[] args)
 	{
-
+                int inputcount = 0;
 		FileInputStream fileStream = null;
+		InputStreamReader isr;
+		BufferedReader br;
 		String line = "";
 		PrintWriter pw;
 		try{
 			fileStream = new FileInputStream("marks.txt");
+			isr = new InputStreamReader(fileStream);
+			br = new BufferedReader(isr);
 			line = br.readLine();
 			studCount = Integer.parseInt(line);
 			Stud[] array = new Stud[studCount];
@@ -101,31 +105,31 @@ class challenge4
 				array[i] = new Student();
 			}
 			line = br.readLine();
-			while(line != null || inputCounter < studCount){//
+			while(line != null || inputcount < studCount){//
 				String[] splitLine;
 				splitLine = line.split(",");
-				if(count%2 == 0){
+				if(inputcount%2 == 0){
 					
-					array[inputCounter].setName(splitLine[1],splitLine[0]);
+					array[inputcount].setName(splitLine[1],splitLine[0]);
 				}
 				else{
 					
-					array[inputCounter].setSubject(splitLine[0]);
+					array[inputcount].setSubject(splitLine[0]);
 					if(splitLine[0].equals("english")){
-						array[inputCounter].setEnglish(Integer.parseInt(splitLine[1]),Integer.parseInt(splitLine[2]),Integer.parseInt(splitLine[3]));
+						array[inputcount].setEnglish(Integer.parseInt(splitLine[1]),Integer.parseInt(splitLine[2]),Integer.parseInt(splitLine[3]));
 					}
 					else if(splitLine[0].equals("science")){
-						array[inputCounter].setScience(Integer.parseInt(splitLine[1]),Integer.parseInt(splitLine[2]),Integer.parseInt(splitLine[3]),Integer.parseInt(splitLine[4]));
+						array[inputcount].setScience(Integer.parseInt(splitLine[1]),Integer.parseInt(splitLine[2]),Integer.parseInt(splitLine[3]),Integer.parseInt(splitLine[4]));
 					}
 					else if(splitLine[0].equals("math")){
-						array[inputCounter].setMath(Integer.parseInt(splitLine[1]),Integer.parseInt(splitLine[2]),Integer.parseInt(splitLine[3]),Integer.parseInt(splitLine[4]),Integer.parseInt(splitLine[5]));
+						array[inputcount].setMath(Integer.parseInt(splitLine[1]),Integer.parseInt(splitLine[2]),Integer.parseInt(splitLine[3]),Integer.parseInt(splitLine[4]),Integer.parseInt(splitLine[5]));
 					}
-					inputCounter+=1;
+					inputcount+=1;
 				}
 				count+=1;
 				line = br.readLine();
 			}
-			fis.close();
+			fileStream.close();
 
 
 		
@@ -147,7 +151,4 @@ class challenge4
 			}
 		}
 	}
-}
-	}
-	
 }
